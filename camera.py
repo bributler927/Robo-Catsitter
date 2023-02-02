@@ -97,3 +97,16 @@ with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
         server.serve_forever()
     finally:
         camera.stop_recording()
+
+def manualStopCamera(stopCameraStatus, camera):
+    if stopCameraStatus:
+        camera.stop_recording()
+    else:
+        return
+
+def manualStartCamera(startCameraStatus, camera):
+    output = StreamingOutput()
+    if startCameraStatus:
+        camera.start_recording(output, format='mjpeg')
+    else:
+        return
